@@ -22,7 +22,9 @@
 
     "paths": {
       "@/*": ["./src"],
-      "@/components/*": ["./src/components/*"]
+      "@components/*": ["./src/components/*"],
+      "@stacks/*": ["./src/stacks/*"],
+      "@pages/*": ["./src/pages/*"]
     }
   },
   "include": ["src"],
