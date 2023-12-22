@@ -1,4 +1,5 @@
 import CreateGroup from '@pages/CreateGroup';
+import GroupDetail from '@pages/GroupDetail';
 import Main from '@pages/Main';
 import NotFound from '@pages/NotFound';
 import { basicUIPlugin } from '@stackflow/plugin-basic-ui';
@@ -17,6 +18,7 @@ export const { Stack: MainStack, useFlow: useMainFlow } = stackflow({
       routes: {
         Main: '/',
         CreateGroup: '/create-group',
+        GroupDetail: '/group-detail',
         NotFound: '/error',
       },
       fallbackActivity: () => 'NotFound',
@@ -26,6 +28,7 @@ export const { Stack: MainStack, useFlow: useMainFlow } = stackflow({
   activities: {
     Main,
     CreateGroup,
+    GroupDetail,
     NotFound,
   },
   initialActivity: () => 'Main',

@@ -4,8 +4,13 @@ import { styled } from '@linaria/react';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { useMainFlow } from '@stacks/StackFlow';
 
+import { colors } from '../styles/theme/color';
+import { textStyles } from '../styles/theme/typographies';
+
 const Please = styled.div`
   background-color: #555;
+  color: ${colors.main700};
+  ${textStyles.title_L_Bold};
 `;
 const Main = () => {
   const { push } = useMainFlow();
@@ -25,6 +30,7 @@ const Main = () => {
       <div className={'name-box'} onClick={() => push('CreateGroup', {})}>
         그룹 생성
       </div>
+      <div onClick={() => push('GroupDetail', { groupId: 1 })}>그룹 상세</div>
       <Please>되라</Please>
     </AppScreen>
   );
