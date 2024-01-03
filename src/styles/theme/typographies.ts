@@ -55,7 +55,7 @@ export const textStyles = {
     letterSpacing: '-0.02em',
     lineHeight: '150%',
   },
-  textL_M_edium: {
+  text_L_Medium: {
     fontSize: fontSizes.textL,
     fontWeight: fontWeights.medium,
     letterSpacing: '-0.02em',

@@ -24,7 +24,9 @@
       "@/*": ["./src"],
       "@components/*": ["./src/components/*"],
       "@stacks/*": ["./src/stacks/*"],
-      "@pages/*": ["./src/pages/*"]
+      "@pages/*": ["./src/pages/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@styles/*": ["./src/styles/*"]
     }
   },
   "include": ["src"],
