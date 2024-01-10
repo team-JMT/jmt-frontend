@@ -1,17 +1,21 @@
 import React from 'react';
 
+import { useAtom, useSetAtom } from 'jotai';
+
+import DownArrow from '@assets/DownArrow';
 import VerticalBar from '@assets/VerticalBar';
+import Chip from '@components/common/Chip';
+import FilterChip from '@components/common/FilterChip';
 import ImageBox from '@components/common/ImageBox';
 import { styled } from '@linaria/react';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
+import { openBottomSheet } from '@store/bottomSheetAtom';
+import { SortKey, drinkCategoryState, foodCategoryState, sortByState } from '@store/filterAtom';
 import { colors } from '@styles/theme/color';
 import { textStyles } from '@styles/theme/typographies';
 
 import BackIcon from '../assets/BackIcon';
 import PostedPlace from '../layouts/GroupDetail/PostedPlace';
-import Chip from '@components/common/Chip';
-import DownArrow from '@assets/DownArrow';
-import FilterChip from '@components/common/FilterChip';
 
 const BackBox = styled.div`
   display: flex;
@@ -72,6 +76,10 @@ const FilterArea = styled.aside`
 `;
 
 const GroupDetail = () => {
+  const [foodState, setFoodState] = useAtom(foodCategoryState);
+  const [drinkState, setDrinkState] = useAtom(drinkCategoryState);
+  const [sortState] = useAtom(sortByState);
+  const handleOpenBottomSheet = useSetAtom(openBottomSheet);
   return (
     <AppScreen
       appBar={{
@@ -101,13 +109,17 @@ const GroupDetail = () => {
         <GrayBar />
         <TitleSBold>최근 등록된 맛집</TitleSBold>
         <FilterArea>
-          <Chip>
-            가까운순
+          <Chip onClick={() => handleOpenBottomSheet('SORT_BY')}>
+            {SortKey[sortState]}
             <DownArrow />
           </Chip>
           <Divider />
-          <FilterChip active={false}>종류</FilterChip>
-          <FilterChip active={false}>주류 여부</FilterChip>
+          <FilterChip active={foodState !== ''} onClick={() => handleOpenBottomSheet('FOOD_CATEGORY')}>
+            종류
+          </FilterChip>
+          <FilterChip active={drinkState !== ''} onClick={() => handleOpenBottomSheet('DRINK_CATEGORY')}>
+            주류 여부
+          </FilterChip>
         </FilterArea>
         <PostedPlace />
       </MainContainer>
