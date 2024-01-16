@@ -9,6 +9,7 @@ import FilterChip from '@components/common/FilterChip';
 import ImageBox from '@components/common/ImageBox';
 import { styled } from '@linaria/react';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
+import { useMainFlow } from '@stacks/StackFlow';
 import { openBottomSheet } from '@store/bottomSheetAtom';
 import { SortKey, drinkCategoryState, foodCategoryState, sortByState } from '@store/filterAtom';
 import { colors } from '@styles/theme/color';
@@ -27,6 +28,13 @@ const ColorBox = styled.div`
   background-color: ${colors.main400};
   width: 100%;
   height: 196px;
+`;
+const Gradation = styled.div`
+  position: absolute;
+  top: 48px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 82.39%);
+  height: 142px;
+  width: 100%;
 `;
 const MainContainer = styled.div`
   margin: 0 20px;
@@ -76,6 +84,7 @@ const FilterArea = styled.aside`
 `;
 
 const GroupDetail = () => {
+  const { pop, push } = useMainFlow();
   const [foodState, setFoodState] = useAtom(foodCategoryState);
   const [drinkState, setDrinkState] = useAtom(drinkCategoryState);
   const [sortState] = useAtom(sortByState);
@@ -85,7 +94,7 @@ const GroupDetail = () => {
       appBar={{
         backButton: {
           render: () => (
-            <BackBox>
+            <BackBox onClick={pop}>
               <BackIcon />
             </BackBox>
           ),
@@ -96,9 +105,11 @@ const GroupDetail = () => {
         height: '48px',
       }}
     >
-      <ColorBox />
+      <>
+        <ColorBox /> <Gradation />
+      </>
       <MainContainer>
-        <ImageBox width_px={80} height_px={80} radius_px={16} />
+        <ImageBox width={'80px'} height={'80px'} radius_px={16} />
         <GroupName>버거버거</GroupName>
         <Numbers>
           멤버 111 <VerticalBar /> 맛집 11
@@ -123,6 +134,7 @@ const GroupDetail = () => {
         </FilterArea>
         <PostedPlace />
       </MainContainer>
+      <button onClick={() => push('GroupShare', { groupId: 1 })}>그룹 공유하기</button>
     </AppScreen>
   );
 };
