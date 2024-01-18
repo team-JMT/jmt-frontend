@@ -20,7 +20,7 @@ export const LiquorKey = {
 export type DrinkCheck = keyof typeof LiquorKey | '';
 export const drinkCategoryState = atom<DrinkCheck>('');
 
-export const drinkToBoolean = (drink: DrinkCheck) => {
+export const drinkToBoolean = (drink: DrinkCheck): boolean | undefined => {
   if (drink === '') {
     return undefined;
   }

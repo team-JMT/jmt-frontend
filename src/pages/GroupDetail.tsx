@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 import { useAtom, useSetAtom } from 'jotai';
 
@@ -83,10 +83,10 @@ const FilterArea = styled.aside`
   margin-bottom: 24px;
 `;
 
-const GroupDetail = () => {
+const GroupDetail = (): ReactNode => {
   const { pop, push } = useMainFlow();
-  const [foodState, setFoodState] = useAtom(foodCategoryState);
-  const [drinkState, setDrinkState] = useAtom(drinkCategoryState);
+  const [foodState] = useAtom(foodCategoryState);
+  const [drinkState] = useAtom(drinkCategoryState);
   const [sortState] = useAtom(sortByState);
   const handleOpenBottomSheet = useSetAtom(openBottomSheet);
   return (

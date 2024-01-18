@@ -1,15 +1,14 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 import { useAtom, useSetAtom } from 'jotai';
 
 import BottomSheetCompoenet from '@components/common/BottomSheet';
-import { bottomSheetState, closeBottomSheet } from '@store/bottomSheetAtom';
+import { closeBottomSheet } from '@store/bottomSheetAtom';
 import { SortCheck, SortKey, sortByState } from '@store/filterAtom';
 
 import { FilterBox, FilterContainer } from './styled';
 
-const SortBy = () => {
-  const [bottomSheet] = useAtom(bottomSheetState);
+const SortBy = (): ReactNode => {
   const [, setSortState] = useAtom(sortByState);
   const closeBS = useSetAtom(closeBottomSheet);
 

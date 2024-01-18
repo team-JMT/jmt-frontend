@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 import { styled } from '@linaria/react';
 import { colors } from '@styles/theme/color';
@@ -32,13 +32,12 @@ const ImageTag = styled.div`
 `;
 
 /** 오른쪽 위에 태그가 달려있는 맛집 장소 이미지 컴포넌트 */
-const PlaceImage = ({ category, canDrinkLiquor, imageUrl }: PlaceImageProps) => {
+const PlaceImage = ({ category, canDrinkLiquor, imageUrl }: PlaceImageProps): ReactNode => {
   const img = imageUrl ? imageUrl : '#d9d9d9';
   return (
     <Img background={img}>
       <ImageTag>{category}</ImageTag>
-      {/* <ImageTag>{canDrinkLiquor}</ImageTag> */}
-      <ImageTag>주류 가능</ImageTag>
+      <ImageTag>{canDrinkLiquor}</ImageTag>
     </Img>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 import { useAtom } from 'jotai';
 
@@ -11,10 +11,10 @@ import { colors } from '@styles/theme/color';
 import FooterButton from './components/FooterButton';
 import { FilterBox, FilterContainer, FilterTitle } from './styled';
 
-const FoodCategoryFilter = () => {
-  const [bottomSheet, setBottomSheet] = useAtom(bottomSheetState);
+const FoodCategoryFilter = (): ReactNode => {
+  const [bottomSheet] = useAtom(bottomSheetState);
 
-  const [foodState, setFoodState] = useAtom(foodCategoryState);
+  const [foodState] = useAtom(foodCategoryState);
   const [localFood, setLocalFood] = useState('');
 
   const foodKeyList = Object.keys(FoodKey);

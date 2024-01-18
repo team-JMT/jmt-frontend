@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 import { styled } from '@linaria/react';
 
@@ -21,7 +21,7 @@ const Img = styled.div<{ width: string; heigth: string; borderRadius: number; ba
 /**
  * width, height, border-radius 의 값은 number로, imageUrl은 string으로
  */
-const ImageBox = ({ width, height, radius_px, imageUrl }: ImageBoxProps) => {
+const ImageBox = ({ width, height, radius_px, imageUrl }: ImageBoxProps): ReactNode => {
   const img = imageUrl ? imageUrl : '#d9d9d9';
   return <Img width={width} heigth={height} borderRadius={radius_px} background={img} />;
 };

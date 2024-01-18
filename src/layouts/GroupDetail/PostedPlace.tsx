@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import HeartIcon from '@assets/HeartIcon';
 import MessageIcon from '@assets/MessageIcon';
 import ImageBox from '@components/common/ImageBox';
@@ -41,11 +43,11 @@ const ReviewBox = styled.div`
   background: ${colors.gray100};
   padding: 20px 16px;
 `;
-const PostedPlace = () => {
+const PostedPlace = (): ReactNode => {
   return (
     <div>
       <UserInfo>
-        <ImageBox width_px={24} height_px={24} radius_px={12} />
+        <ImageBox width={'24px'} height={'24px'} radius_px={12} />
         <UserName>유저이름유저이름</UserName>
       </UserInfo>
       <PlaceImage category="중식" canDrinkLiquor={true} />
@@ -59,7 +61,7 @@ const PostedPlace = () => {
         123 <MessageIcon /> 456
       </ReactionBox>
       <ReviewBox>
-        <ImageBox width_px={40} height_px={40} radius_px={8} />
+        <ImageBox width={'40px'} height={'40px'} radius_px={8} />
       </ReviewBox>
     </div>
   );

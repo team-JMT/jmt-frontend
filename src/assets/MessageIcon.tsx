@@ -1,9 +1,11 @@
+import { ReactNode } from 'react';
+
 import { styled } from '@linaria/react';
 
 const Container = styled.div`
   margin: 6px 2px 0 14px;
 `;
-const MessageIcon = () => {
+const MessageIcon = (): ReactNode => {
   return (
     <Container>
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

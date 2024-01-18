@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import BackIcon from '@assets/BackIcon';
 import ImageBox from '@components/common/ImageBox';
 import { styled } from '@linaria/react';
@@ -16,7 +18,7 @@ const MainText = styled.div`
   ${textStyles.title_M_Bold}
   color: ${colors.gray900};
 `;
-const GroupShare = () => {
+const GroupShare = (): ReactNode => {
   const { pop } = useMainFlow();
 
   const copyToClipboard = (text: string) => {

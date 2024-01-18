@@ -1,6 +1,5 @@
 import { atom } from 'jotai';
 
-const BottomSheetAtom = 'BottomSheet';
 export const BOTTOM_SHEET_KEY = {
   FOOD_CATEGORY: 'FOOD_CATEGORY',
   SORT_BY: 'SORT_BY',

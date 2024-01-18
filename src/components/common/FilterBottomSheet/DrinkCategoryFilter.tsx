@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 import { useAtom } from 'jotai';
 
@@ -11,10 +11,10 @@ import { colors } from '@styles/theme/color';
 import FooterButton from './components/FooterButton';
 import { FilterBox, FilterContainer, FilterTitle } from './styled';
 
-const DrinkCategoryFilter = () => {
+const DrinkCategoryFilter = (): ReactNode => {
   const [bottomSheet] = useAtom(bottomSheetState);
 
-  const [drinkState, setDrinkState] = useAtom(drinkCategoryState);
+  const [drinkState] = useAtom(drinkCategoryState);
   const [localDrink, setLocalDrink] = useState('');
 
   const liquorKeyList = Object.keys(LiquorKey);

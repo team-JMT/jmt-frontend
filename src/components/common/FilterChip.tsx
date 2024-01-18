@@ -1,7 +1,6 @@
-import React, { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 import DownArrow from '@assets/DownArrow';
-import { css } from '@linaria/core';
 import { styled } from '@linaria/react';
 import { colors } from '@styles/theme/color';
 import { textStyles } from '@styles/theme/typographies';
@@ -36,7 +35,7 @@ export const StyledFilterChip = styled.div<FilterChipOptionProps>`
     border: 1px solid ${colors.gray200};
   `}; */
 
-const FilterChip = ({ children, active, ...rest }: FilterChipProps) => {
+const FilterChip = ({ children, active, ...rest }: FilterChipProps): ReactNode => {
   return (
     <StyledFilterChip active={active} {...rest}>
       {children}

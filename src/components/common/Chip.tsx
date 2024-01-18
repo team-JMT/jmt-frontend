@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 import { styled } from '@linaria/react';
 import { colors } from '@styles/theme/color';
@@ -21,7 +21,7 @@ export const StyledChip = styled.div`
 export interface ChipProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
-const Chip = ({ children, ...rest }: ChipProps) => {
+const Chip = ({ children, ...rest }: ChipProps): ReactNode => {
   return <StyledChip {...rest}>{children}</StyledChip>;
 };
 

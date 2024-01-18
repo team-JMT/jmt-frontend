@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { styled } from '@linaria/react';
 
@@ -31,7 +31,7 @@ interface Props<T> {
   onClick?: (item: T) => void;
 }
 
-const List = <T extends Record<string, unknown>>({ list, onClick, children }: Props<T>) => {
+const List = <T extends Record<string, unknown>>({ list, onClick, children }: Props<T>): ReactNode => {
   return (
     <ListWrapper>
       {list &&
