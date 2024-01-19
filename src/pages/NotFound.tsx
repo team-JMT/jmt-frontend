@@ -1,6 +1,6 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
-const NotFound = () => {
+const NotFound = (): ReactNode => {
   return <div>NotFound</div>;
 };
 

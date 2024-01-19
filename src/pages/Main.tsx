@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 import { styled } from '@linaria/react';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
@@ -12,7 +12,7 @@ const Please = styled.div`
   color: ${colors.main700};
   ${textStyles.title_L_Bold};
 `;
-const Main = () => {
+const Main = (): ReactNode => {
   const { push } = useMainFlow();
   return (
     <AppScreen
@@ -27,9 +27,7 @@ const Main = () => {
       }}
     >
       <div>메인입니다</div>
-      <div className={'name-box'} onClick={() => push('CreateGroup', {})}>
-        그룹 생성
-      </div>
+      <div onClick={() => push('CreateGroup', {})}>그룹 생성</div>
       <div onClick={() => push('GroupDetail', { groupId: 1 })}>그룹 상세</div>
       <Please>되라</Please>
     </AppScreen>
