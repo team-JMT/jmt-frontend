@@ -8,7 +8,7 @@ import App from './App.tsx';
 import './index.css';
 import '@stackflow/plugin-basic-ui/index.css';
 
-window.Kakao.init('eb277f8460b80d0c739e75e5ea9ba217'); //보안처리 필요
+window.Kakao.init(import.meta.env.VITE_CONFIG_KAKAO_JS_KEY);
 window.Kakao.isInitialized(); // init되면 true, 아니면 false를 반환한다
 
 const queryClient = new QueryClient();
