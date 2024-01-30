@@ -1,5 +1,6 @@
 import CreateGroup from '@pages/CreateGroup';
 import GroupDetail from '@pages/GroupDetail';
+import GroupSetting from '@pages/GroupSetting';
 import GroupShare from '@pages/GroupShare';
 import Main from '@pages/Main';
 import NotFound from '@pages/NotFound';
@@ -21,6 +22,7 @@ export const { Stack: MainStack, useFlow: useMainFlow } = stackflow({
         CreateGroup: '/create-group',
         GroupDetail: '/group-detail/:groupId',
         GroupShare: '/group-share/:groupId',
+        GroupSetting: 'group-setting',
         NotFound: '/error',
       },
       fallbackActivity: () => 'NotFound',
@@ -32,6 +34,7 @@ export const { Stack: MainStack, useFlow: useMainFlow } = stackflow({
     CreateGroup,
     GroupDetail,
     GroupShare,
+    GroupSetting,
     NotFound,
   },
   initialActivity: () => 'Main',
