@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import App from './App.tsx';
+import './index.css';
 import '@stackflow/plugin-basic-ui/index.css';
 
 window.Kakao.init(import.meta.env.VITE_CONFIG_KAKAO_JS_KEY);
