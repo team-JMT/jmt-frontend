@@ -20,6 +20,7 @@ const Main = (): ReactNode => {
       <div>메인입니다</div>
       <button onClick={() => push('CreateGroup', {})}>그룹 생성</button>
       <button onClick={() => push('GroupDetail', { groupId: 1 })}>그룹 상세</button>
+      <button onClick={() => push('GroupList', {})}>그룹 리스트</button>
     </AppScreen>
   );
 };
