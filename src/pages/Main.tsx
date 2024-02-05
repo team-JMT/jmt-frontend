@@ -1,17 +1,8 @@
 import { ReactNode } from 'react';
 
-import { styled } from '@linaria/react';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { useMainFlow } from '@stacks/StackFlow';
 
-import { colors } from '../styles/theme/color';
-import { textStyles } from '../styles/theme/typographies';
-
-const Please = styled.div`
-  background-color: #555;
-  color: ${colors.main700};
-  ${textStyles.title_L_Bold};
-`;
 const Main = (): ReactNode => {
   const { push } = useMainFlow();
   return (
@@ -27,9 +18,9 @@ const Main = (): ReactNode => {
       }}
     >
       <div>메인입니다</div>
-      <div onClick={() => push('CreateGroup', {})}>그룹 생성</div>
-      <div onClick={() => push('GroupDetail', { groupId: 1 })}>그룹 상세</div>
-      <Please>되라</Please>
+      <button onClick={() => push('CreateGroup', {})}>그룹 생성</button>
+      <button onClick={() => push('GroupDetail', { groupId: 1 })}>그룹 상세</button>
+      <button onClick={() => push('GroupList', {})}>그룹 리스트</button>
     </AppScreen>
   );
 };
