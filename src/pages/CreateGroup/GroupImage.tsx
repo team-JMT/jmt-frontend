@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
-import { useAtomValue } from 'jotai/react/useAtomValue';
+import { useAtomValue } from 'jotai';
 
 import BackIcon from '@assets/BackIcon.tsx';
 import Button from '@components/common/Button.tsx';
 import ImageButton from '@components/CreateGroup/ImageButton.tsx';
 import Text2Row from '@components/CreateGroup/Text2Row.tsx';
+import Footer from '@components/Footer.tsx';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { useMainFlow } from '@stacks/StackFlow.ts';
 import { createGroupAtom } from '@store/createGroupAtom.ts';
 import { BackBox } from '@styles/global.tsx';
-import { Container, Footer, Title } from '@styles/pages/CreateGroup.styled.ts';
+import { Container, Title } from '@styles/pages/CreateGroup.styled.ts';
 import { textStyles } from '@styles/theme/typographies.ts';
 
 import { usePostGroupMutate } from '../../apis/Group/usePostGroupMutate.ts';
@@ -38,7 +39,7 @@ const GroupImage = () => {
   } = useFileInput({
     accept: 'image/*',
   });
-  const { pop } = useMainFlow();
+  const { pop, replace } = useMainFlow();
 
   const [photoSrc, setPhotoSrc] = useState<{
     profile: FileInput;
@@ -114,8 +115,11 @@ const GroupImage = () => {
       <Footer>
         <Button
           onClick={() => {
-            handleSubmit();
-            pop(3);
+            // handleSubmit();
+            replace('GroupDetail', {
+              groupId: 1,
+            });
+            sessionStorage.setItem('group-init', 'true');
           }}
         >
           <span style={textStyles.text_L_Bold}>그룹 만들기</span>

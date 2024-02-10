@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 import { useAtom, useSetAtom } from 'jotai';
 
@@ -8,6 +8,7 @@ import VerticalBar from '@assets/VerticalBar';
 import Chip from '@components/common/Chip';
 import FilterChip from '@components/common/FilterChip';
 import ImageBox from '@components/common/ImageBox';
+import InitGroupInviteModal from '@components/GroupDetail/InitGroupInviteModal.tsx';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { useMainFlow } from '@stacks/StackFlow';
 import { openBottomSheet } from '@store/bottomSheetAtom';
@@ -32,10 +33,12 @@ import PostedPlace from '../layouts/GroupDetail/PostedPlace';
 
 const GroupDetail = (): ReactNode => {
   const { pop, push } = useMainFlow();
+
   const [foodState] = useAtom(foodCategoryState);
   const [drinkState] = useAtom(drinkCategoryState);
   const [sortState] = useAtom(sortByState);
   const handleOpenBottomSheet = useSetAtom(openBottomSheet);
+
   return (
     <AppScreen
       appBar={{
@@ -87,6 +90,7 @@ const GroupDetail = (): ReactNode => {
         <PostedPlace />
         <button onClick={() => push('GroupSetting', {})}>그룹 세팅</button>
       </MainContainer>
+      <InitGroupInviteModal />
     </AppScreen>
   );
 };

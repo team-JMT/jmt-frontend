@@ -43,12 +43,3 @@ export const TextArea = styled.textarea`
     color: ${colors.gray300};
   }
 `;
-
-export const Footer = styled.footer`
-  position: sticky;
-  bottom: 0;
-  display: flex;
-  padding: 15px 20px 39px 20px;
-  border-top: 1px solid ${colors.gray100};
-  background: ${colors.white};
-`;

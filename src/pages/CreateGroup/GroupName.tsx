@@ -4,21 +4,22 @@ import { useSetAtom } from 'jotai';
 
 import BackIcon from '@assets/BackIcon.tsx';
 import Button from '@components/common/Button.tsx';
+import Footer from '@components/Footer.tsx';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { useMainFlow } from '@stacks/StackFlow.ts';
 import { handleSetNameAtom } from '@store/createGroupAtom.ts';
 import { BackBox } from '@styles/global.tsx';
-import { Container, Footer, Input, Title } from '@styles/pages/CreateGroup.styled.ts';
+import { Container, Input, Title } from '@styles/pages/CreateGroup.styled.ts';
 import { textStyles } from '@styles/theme/typographies.ts';
 
 const GroupName = (): ReactNode => {
-  const { pop, push } = useMainFlow();
+  const { pop, replace } = useMainFlow();
   const [inputValue, setInputValue] = useState<string>('');
 
   const handleSetName = useSetAtom(handleSetNameAtom);
   const handleClick = (): void => {
     handleSetName(inputValue);
-    push('IntroduceGroup', {});
+    replace('IntroduceGroup', {});
   };
   return (
     <AppScreen

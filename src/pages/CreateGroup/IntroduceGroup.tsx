@@ -4,21 +4,22 @@ import { useSetAtom } from 'jotai/index';
 
 import BackIcon from '@assets/BackIcon.tsx';
 import Button from '@components/common/Button.tsx';
+import Footer from '@components/Footer.tsx';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { useMainFlow } from '@stacks/StackFlow.ts';
 import { handleSetDescriptionAtom } from '@store/createGroupAtom.ts';
 import { BackBox } from '@styles/global.tsx';
-import { Container, Footer, TextArea, Title } from '@styles/pages/CreateGroup.styled.ts';
+import { Container, TextArea, Title } from '@styles/pages/CreateGroup.styled.ts';
 import { textStyles } from '@styles/theme/typographies.ts';
 
 const IntroduceGroup = () => {
-  const { pop, push } = useMainFlow();
+  const { pop, replace } = useMainFlow();
   const [inputValue, setInputValue] = useState<string>('');
 
   const handleSetDescription = useSetAtom(handleSetDescriptionAtom);
   const handleClick = (): void => {
     handleSetDescription(inputValue);
-    push('GroupImage', {});
+    replace('GroupImage', {});
   };
   return (
     <AppScreen

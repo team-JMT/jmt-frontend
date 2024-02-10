@@ -8,6 +8,7 @@ import App from './App.tsx';
 
 import './index.css';
 import '@stackflow/plugin-basic-ui/index.css';
+import { BrowserRouter } from 'react-router-dom';
 
 window.Kakao.init(import.meta.env.VITE_CONFIG_KAKAO_JS_KEY);
 window.Kakao.isInitialized(); // init되면 true, 아니면 false를 반환한다
@@ -17,7 +18,9 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>,
