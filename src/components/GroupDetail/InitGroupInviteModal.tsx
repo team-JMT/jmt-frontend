@@ -43,6 +43,27 @@ const InitGroupInviteModal = () => {
     sessionStorage.setItem('group-init', 'false');
     setInit(false);
   };
+  const copyToClipboard = (text: string) => {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+  };
+
+  const linkShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: '타이틀',
+        text: 'Hello World',
+        url: 'https://github.com/team-JMT/jmt-frontend',
+      });
+    } else {
+      //alert('공유하기가 지원되지 않는 환경 입니다.');
+      copyToClipboard('https://github.com/team-JMT/jmt-frontend');
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -82,6 +103,8 @@ const InitGroupInviteModal = () => {
             <Button
               onClick={(e) => {
                 e.stopPropagation();
+                linkShare();
+                handleCloseInit();
               }}
             >
               <span style={textStyles.text_L_Bold}>친구 초대하기</span>
