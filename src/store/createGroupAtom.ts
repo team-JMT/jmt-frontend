@@ -21,9 +21,9 @@ export const handleSetNameAtom = atom(null, (get, set, name: string) => {
   });
 });
 
-export const handleSetDescriptionAtom = atom(null, (get, set, description: string) => {
+export const handleSetDescriptionAtom = atom(null, (get, set, introduce: string) => {
   set(createGroupAtom, {
     ...get(createGroupAtom),
-    description,
+    introduce,
   });
 });
