@@ -24,7 +24,7 @@ type FileInput = {
 
 const GroupImage = () => {
   const group = useAtomValue(createGroupAtom);
-  const { postGroup } = usePostGroupMutate();
+  const { postGroupAsync } = usePostGroupMutate();
   const {
     openFilePicker: openProfilePhotoPicker,
     selectedFiles: profilePhoto,
@@ -53,14 +53,24 @@ const GroupImage = () => {
     },
   });
 
-  const handleSubmit = () => {
-    postGroup({
-      isPrivateGroup: false,
-      groupBackgroundImage: photoSrc.background.file,
-      groupProfileImage: photoSrc.profile.file,
-      groupIntroduce: group.introduce,
-      groupName: group.name,
-    });
+  const handleSubmit = async () => {
+    await postGroupAsync(
+      {
+        isPrivateGroup: false,
+        groupBackgroundImage: photoSrc.background.file,
+        groupProfileImage: photoSrc.profile.file,
+        groupIntroduce: group.introduce,
+        groupName: group.name,
+      },
+      {
+        onSuccess: async (response) => {
+          replace('GroupDetail', {
+            groupId: response.data.data.groupCode,
+          });
+          sessionStorage.setItem('group-init', 'true');
+        },
+      },
+    );
   };
 
   useEffect(() => {
@@ -116,10 +126,6 @@ const GroupImage = () => {
         <Button
           onClick={() => {
             handleSubmit();
-            replace('GroupDetail', {
-              groupId: 1,
-            });
-            sessionStorage.setItem('group-init', 'true');
           }}
         >
           <span style={textStyles.text_L_Bold}>그룹 만들기</span>

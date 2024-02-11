@@ -5,3 +5,8 @@ export interface PostGroupRequest {
   groupBackgroundImage?: File;
   isPrivateGroup: boolean;
 }
+export interface PostGroupResponse {
+  data: {
+    groupCode: string;
+  };
+}
