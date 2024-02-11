@@ -115,7 +115,7 @@ const GroupImage = () => {
       <Footer>
         <Button
           onClick={() => {
-            // handleSubmit();
+            handleSubmit();
             replace('GroupDetail', {
               groupId: 1,
             });
