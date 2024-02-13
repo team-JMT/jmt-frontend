@@ -19,7 +19,7 @@ const DragItem = styled(Reorder.Item)`
   align-items: center;
   padding: 16px;
   border-radius: 16px;
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.9);
 `;
 
 export const Item = ({ item }: Props) => {
