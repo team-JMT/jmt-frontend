@@ -17,18 +17,25 @@ const Title = styled.div`
   color:${colors.gray800};
   margin: 16px 0 16px 20px;
 `;
-const Main500Btn = styled.button`
-  position: absolute;
-  bottom: 39px;
-  border-radius: 8px;
-  border: none;
-  width: 90%;
-  margin: 0 20px;
-  color: #fff;
-  background-color: ${colors.main500};
-  ${textStyles.text_L_Bold}
-  padding: 16px 10px;
+const BottomBox = styled.div`
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  height: 80px;
+  background-color: #fff;
+  padding-top: 10px;
+  button {
+    border-radius: 8px;
+    border: none;
+    width: 90%;
+    margin: 0 20px;
+    color: #fff;
+    background-color: ${colors.main500};
+    ${textStyles.text_L_Bold}
+    padding: 16px 10px;
+  }
 `;
+
 const DragGroup = styled(Reorder.Group)`
   display: flex;
   flex-direction: column;
@@ -38,7 +45,7 @@ const DragGroup = styled(Reorder.Group)`
 const GroupListEdit = (): ReactNode => {
   const { pop } = useMainFlow();
 
-  const [items, setItems] = useState(['가', '나', '다', '라']);
+  const [items, setItems] = useState(['가', '나', '다', '라', '마', '바', '사']);
   return (
     <AppScreen
       appBar={{
@@ -60,7 +67,9 @@ const GroupListEdit = (): ReactNode => {
           <Item key={item} item={item} />
         ))}
       </DragGroup>
-      <Main500Btn>변경하기</Main500Btn>
+      <BottomBox>
+        <button>변경하기</button>
+      </BottomBox>
     </AppScreen>
   );
 };
