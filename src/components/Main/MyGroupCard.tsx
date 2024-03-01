@@ -25,7 +25,7 @@ const MyGroupCard = ({ image, name, ...rest }: MyGroupCardProps) => {
   return (
     <Container {...rest}>
       <Image src={image} />
-      <span css={{ ...textStyles.text_M_Medium }}>{name}</span>
+      <span style={{ ...textStyles.text_M_Medium }}>{name}</span>
     </Container>
   );
 };
