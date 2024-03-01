@@ -49,3 +49,9 @@ html {
     -apple-system,
     sans-serif;
 }
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
