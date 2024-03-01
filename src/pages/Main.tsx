@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 
+import CreateGroupButton from '@components/Main/CreateGroupButton.tsx';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { useMainFlow } from '@stacks/StackFlow';
 
@@ -8,13 +9,10 @@ const Main = (): ReactNode => {
   return (
     <AppScreen
       appBar={{
-        title: <div>아마도</div>,
-
         height: '48px',
+        renderRight: () => <CreateGroupButton onClick={() => push('GroupName', {})} />,
       }}
     >
-      <div>메인입니다</div>
-      <button onClick={() => push('GroupName', {})}>그룹 생성</button>
       <button onClick={() => push('GroupDetail', { groupId: 1 })}>그룹 상세</button>
       <button onClick={() => push('GroupList', {})}>그룹 리스트</button>
     </AppScreen>
