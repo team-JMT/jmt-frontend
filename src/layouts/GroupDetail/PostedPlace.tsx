@@ -13,10 +13,10 @@ const UserInfo = styled.div`
   align-items: center;
   gap: 6px;
   margin-bottom: 16px;
-`;
-const UserName = styled.div`
-  ${textStyles.text_M_Bold}
-  color:${colors.gray900};
+  div {
+    ${textStyles.text_M_Bold}
+    color:${colors.gray900};
+  }
 `;
 const PlaceName = styled.div`
   ${textStyles.text_L_Bold}
@@ -43,12 +43,31 @@ const ReviewBox = styled.div`
   background: ${colors.gray100};
   padding: 20px 16px;
 `;
+const TextBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+  gap: 2px;
+  width: calc(100% - 52px);
+  .user-name {
+    ${textStyles.text_S_Medium}
+    color: ${colors.gray700};
+  }
+  .comment {
+    ${textStyles.text_M_Medium}
+    color:${colors.gray800};
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+`;
+
 const PostedPlace = (): ReactNode => {
   return (
     <div>
       <UserInfo>
         <ImageBox width={'24px'} height={'24px'} radius_px={12} />
-        <UserName>유저이름유저이름</UserName>
+        <div>유저이름유저이름</div>
       </UserInfo>
       <PlaceImage category="중식" canDrinkLiquor={true} />
       <PlaceName>가가게게이이르름</PlaceName>
@@ -62,6 +81,10 @@ const PostedPlace = (): ReactNode => {
       </ReactionBox>
       <ReviewBox>
         <ImageBox width={'40px'} height={'40px'} radius_px={8} />
+        <TextBox>
+          <div className="user-name">유저 이름</div>
+          <div className="comment">유저가 남긴 코메에에에에에에에에에에에에에ㅔ에에에엥에에에엔트</div>
+        </TextBox>
       </ReviewBox>
     </div>
   );

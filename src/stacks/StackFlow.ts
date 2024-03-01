@@ -1,4 +1,6 @@
-import CreateGroup from '@pages/CreateGroup';
+import GroupImage from '@pages/CreateGroup/GroupImage.tsx';
+import GroupName from '@pages/CreateGroup/GroupName.tsx';
+import IntroduceGroup from '@pages/CreateGroup/IntroduceGroup';
 import GroupDetail from '@pages/GroupDetail';
 import GroupList from '@pages/GroupList';
 import GroupSetting from '@pages/GroupSetting';
@@ -20,7 +22,9 @@ export const { Stack: MainStack, useFlow: useMainFlow } = stackflow({
     historySyncPlugin({
       routes: {
         Main: '/',
-        CreateGroup: '/create-group',
+        GroupName: '/group-create/name',
+        GroupImage: '/group-create/image',
+        IntroduceGroup: '/group-create/introduce',
         GroupDetail: '/group-detail/:groupId',
         GroupShare: '/group-share/:groupId',
         GroupSetting: '/group-setting',
@@ -33,7 +37,9 @@ export const { Stack: MainStack, useFlow: useMainFlow } = stackflow({
   ],
   activities: {
     Main,
-    CreateGroup,
+    GroupName,
+    GroupImage,
+    IntroduceGroup,
     GroupDetail,
     GroupShare,
     GroupSetting,

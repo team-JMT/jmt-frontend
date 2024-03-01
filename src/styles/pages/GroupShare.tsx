@@ -16,6 +16,8 @@ export const ButtonBox = styled.div`
     width: 100%;
     padding: 16px 10px;
     ${textStyles.text_L_Bold}
+    border-radius: 8px;
+    border: none;
   }
 `;
 export const KakaoBtn = styled.button`
