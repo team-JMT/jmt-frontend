@@ -54,6 +54,7 @@ export const ModalButton = styled.button`
   height: 48px;
   padding: 0px;
   border: 1px solid ${colors.main600};
+  border-radius: 8px;
   background: ${colors.white};
   color: ${colors.main600};
   & + & {
