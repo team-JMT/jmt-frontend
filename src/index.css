@@ -51,5 +51,10 @@ html {
     'Pretendard',
     -apple-system,
     sans-serif;
-  font-size: 10px;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
 }

@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { postGroup } from './Group.ts';
+import { postGroup } from '../GroupServices.ts';
 
 export const usePostGroupMutate = () => {
   const { mutateAsync, mutate, ...rest } = useMutation({

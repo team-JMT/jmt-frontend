@@ -14,7 +14,7 @@ import { BackBox } from '@styles/global.tsx';
 import { Container, Title } from '@styles/pages/CreateGroup.styled.ts';
 import { textStyles } from '@styles/theme/typographies.ts';
 
-import { usePostGroupMutate } from '../../apis/Group/usePostGroupMutate.ts';
+import { usePostGroupMutate } from '../../apis/Group/queries/usePostGroupMutate.ts';
 import useFileInput from '../../hooks/useFileInput.ts';
 
 type FileInput = {

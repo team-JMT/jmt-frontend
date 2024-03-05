@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getGroup } from './Group';
+import { getGroup } from './GroupServices';
 
 const useGetGroup = (groupId: number) => {
   const { isLoading, isError, data } = useQuery(
