@@ -40,7 +40,10 @@
   font-display: swap;
 }
 html {
-  font-family: 'Pretendard', -apple-system, sans-serif;
+  font-family:
+    'Pretendard',
+    -apple-system,
+    sans-serif;
   color: #000000;
 }
 * {

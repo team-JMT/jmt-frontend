@@ -25,7 +25,7 @@ const Main = (): ReactNode => {
         <MyGroupListContainer>
           <MyGroupListHeader>
             <span style={textStyles.title_S_Bold}>나의 맛집 그룹</span>
-            <RightArrowIconButton />
+            <RightArrowIconButton onClick={() => push('GroupList', {})} />
           </MyGroupListHeader>
           <MyGroupList>
             {myGroupsData?.map(({ groupId, groupName, groupProfileImageUrl }) => (

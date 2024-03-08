@@ -2,6 +2,7 @@ import { changeToFormData } from '@utils/changeToFormData.ts';
 
 import { Instance } from '../Instance.ts';
 
+import { GetGroupResponse } from './data/GetGroup.ts';
 import { GetMyGroupsResponse } from './data/getMyGroups.ts';
 import { PostGroupRequest, PostGroupResponse } from './data/PostGroup.ts';
 
@@ -15,4 +16,8 @@ export const postGroup = (payload: PostGroupRequest) => {
 };
 export const getMyGroups = () => {
   return Instance.get<GetMyGroupsResponse>(`/api/v1/group/my`);
+};
+
+export const getGroup = (groupId: number) => {
+  return Instance.get<GetGroupResponse>(`/api/v1/group/${groupId}`);
 };
