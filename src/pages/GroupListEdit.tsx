@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 import { Reorder } from 'framer-motion';
 
@@ -10,7 +10,9 @@ import { BackBox } from '@styles/global';
 import { colors } from '@styles/theme/color';
 import { textStyles } from '@styles/theme/typographies';
 
+import { useGetMyGroups } from '../apis/Group/queries/useGetMyGroups';
 import { Item } from '../layouts/GroupList/Item';
+import { Group } from '../models/Group';
 
 const Title = styled.div`
   ${textStyles.title_S_Bold}
@@ -46,6 +48,21 @@ const GroupListEdit = (): ReactNode => {
   const { pop } = useMainFlow();
 
   const [items, setItems] = useState(['가', '나', '다', '라', '마', '바', '사']);
+  const { myGroupsData } = useGetMyGroups();
+
+  const [groupOrder, setGroupOrder] = useState<number[]>([]);
+  useEffect(() => {
+    const localList = localStorage.getItem('group-list');
+    setGroupOrder(JSON.parse(localList!));
+    //setGroupOrder([6, 7, 8, 9, 11, 13]);
+  }, []);
+
+  const handleChange = () => {
+    console.log(groupOrder);
+    const json = JSON.stringify(groupOrder);
+    localStorage.setItem('group-list', json);
+  };
+
   return (
     <AppScreen
       appBar={{
@@ -62,13 +79,14 @@ const GroupListEdit = (): ReactNode => {
       }}
     >
       <Title>그룹의 순서를 변경하세요</Title>
-      <DragGroup axis="y" values={items} onReorder={setItems}>
-        {items.map((item) => (
-          <Item key={item} item={item} />
-        ))}
+      <DragGroup axis="y" values={groupOrder} onReorder={setGroupOrder}>
+        {groupOrder.map((groupId) => {
+          const group = myGroupsData?.find((group: Group) => group.groupId === groupId);
+          return <Item key={groupId} groupId={groupId} group={group} />;
+        })}
       </DragGroup>
       <BottomBox>
-        <button>변경하기</button>
+        <button onClick={handleChange()}>변경하기</button>
       </BottomBox>
     </AppScreen>
   );

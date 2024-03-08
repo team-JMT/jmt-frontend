@@ -67,7 +67,7 @@ const InitGroupInviteModal = () => {
 
   return (
     <AnimatePresence>
-      {!init && (
+      {init && (
         <Backdrop
           onClick={handleCloseInit}
           initial={{

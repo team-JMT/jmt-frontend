@@ -8,10 +8,13 @@ import ImageBox from '@components/common/ImageBox';
 import { styled } from '@linaria/react';
 import { TextBox } from '@styles/pages/GroupList';
 
+import { Group } from '../../models/Group';
+
 import { useRaisedShadow } from './use-raised-shadow';
 
 interface Props {
-  item: string;
+  groupId: number;
+  group: Group;
 }
 const DragItem = styled(Reorder.Item)`
   display: flex;
@@ -22,16 +25,16 @@ const DragItem = styled(Reorder.Item)`
   background: rgba(255, 255, 255, 0.9);
 `;
 
-export const Item = ({ item }: Props) => {
+export const Item = ({ groupId, group }: Props) => {
   const y = useMotionValue(0);
   const boxShadow = useRaisedShadow(y);
   const dragControls = useDragControls();
 
   return (
-    <DragItem value={item} drag="y" style={{ boxShadow, y }}>
+    <DragItem value={groupId} drag="y" style={{ boxShadow, y }}>
       <ImageBox width={'56px'} height={'56px'} radius_px={12} />
       <TextBox>
-        <div className="place-name">{item}</div>
+        <div className="place-name">{group.groupName}</div>
         <div className="numbers">
           멤버 111 <VerticalBar /> 맛집 11
         </div>

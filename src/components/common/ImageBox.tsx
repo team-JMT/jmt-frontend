@@ -8,22 +8,30 @@ interface ImageBoxProps {
   radius_px: number;
   imageUrl?: string;
 }
-const Img = styled.div<{ width: string; heigth: string; borderRadius: number; background: string }>`
+
+const ImageDiv = styled.div<{ width: string; height: string; borderRadius: number }>`
   width: ${(props) => props.width};
-  height: ${(props) => props.heigth};
+  height: ${(props) => props.height};
   border-radius: ${(props) => props.borderRadius}px;
-  background: ${(props) => props.background};
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-/**
- * width, height, border-radius 의 값은 number로, imageUrl은 string으로
- */
+const Img = styled.img`
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  object-fit: cover;
+`;
+
 const ImageBox = ({ width, height, radius_px, imageUrl }: ImageBoxProps): ReactNode => {
-  const img = imageUrl ? imageUrl : '#d9d9d9';
-  return <Img width={width} heigth={height} borderRadius={radius_px} background={img} />;
+  return (
+    <ImageDiv width={width} height={height} borderRadius={radius_px}>
+      {imageUrl ? <Img src={imageUrl} alt="image" /> : <></>}
+    </ImageDiv>
+  );
 };
 
 export default ImageBox;
