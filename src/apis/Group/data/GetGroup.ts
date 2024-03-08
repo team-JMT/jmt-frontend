@@ -1,13 +1,13 @@
+import { ApiResponse } from '../ApiResponse.ts';
 export interface GroupData {
   groupId: number;
   groupName: string;
   groupIntroduce: string;
-  groupProfileImage?: string;
-  groupBackgroundImage?: string;
+  groupProfileImageUrl: string;
+  groupBackgroundImageUrl: string;
   isPrivateGroup: boolean;
+  memberCnt: number;
+  restaurantCnt: number;
 }
-export interface GetGroupResponse {
-  data: GroupData;
-  message: string;
-  code: string;
-}
+
+export type GetGroupResponse = ApiResponse<GroupData>;

@@ -47,15 +47,10 @@ const DragGroup = styled(Reorder.Group)`
 const GroupListEdit = (): ReactNode => {
   const { pop } = useMainFlow();
 
-  const [items, setItems] = useState(['가', '나', '다', '라', '마', '바', '사']);
   const { myGroupsData } = useGetMyGroups();
 
-  const [groupOrder, setGroupOrder] = useState<number[]>([]);
-  useEffect(() => {
-    const localList = localStorage.getItem('group-list');
-    setGroupOrder(JSON.parse(localList!));
-    //setGroupOrder([6, 7, 8, 9, 11, 13]);
-  }, []);
+  const localList = localStorage.getItem('group-list');
+  const [groupOrder, setGroupOrder] = useState<number[]>(JSON.parse(localList!));
 
   const handleChange = () => {
     console.log(groupOrder);
@@ -82,11 +77,11 @@ const GroupListEdit = (): ReactNode => {
       <DragGroup axis="y" values={groupOrder} onReorder={setGroupOrder}>
         {groupOrder.map((groupId) => {
           const group = myGroupsData?.find((group: Group) => group.groupId === groupId);
-          return <Item key={groupId} groupId={groupId} group={group} />;
+          return <Item key={groupId} groupId={groupId} group={group!} />;
         })}
       </DragGroup>
       <BottomBox>
-        <button onClick={handleChange()}>변경하기</button>
+        <button onClick={() => handleChange()}>변경하기</button>
       </BottomBox>
     </AppScreen>
   );

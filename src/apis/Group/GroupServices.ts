@@ -18,6 +18,6 @@ export const getMyGroups = () => {
   return Instance.get<GetMyGroupsResponse>(`/api/v1/group/my`);
 };
 
-export const getGroup = async (groupId: number) => {
-  return await Instance.get<GetGroupResponse>(`/api/v1/group/${groupId}`);
+export const getGroup = (groupId: number) => {
+  return Instance.get<GetGroupResponse>(`/api/v1/group/${groupId}`);
 };

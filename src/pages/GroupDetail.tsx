@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 
 import { useAtom, useSetAtom } from 'jotai';
 
@@ -40,11 +40,11 @@ const GroupDetail = (): ReactNode => {
   const [sortState] = useAtom(sortByState);
   const handleOpenBottomSheet = useSetAtom(openBottomSheet);
 
-  const { Group, message, isError } = useGetGroup(9);
+  const { Group, isError } = useGetGroup(9);
   console.log(Group);
 
   if (isError) {
-    return <>에러가 났어요 {message}</>;
+    return <>에러가 났어요</>;
   } else {
     return (
       <AppScreen
