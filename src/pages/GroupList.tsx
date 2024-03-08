@@ -49,27 +49,31 @@ const GroupList = (): ReactNode => {
       }}
     >
       <Title>나의 맛집 그룹</Title>
-      <MyGroupWrapper>
-        {groupList.map((groupId) => {
-          const group = myGroupsData?.find((group) => group.groupId === groupId);
-          if (!group) {
-            return null;
-          }
-          const { groupName, groupProfileImageUrl, memberCnt, restaurantCnt, groupIntroduce } = group;
-          return (
-            <MyGroup key={groupId}>
-              <ImageBox width="80px" height="80px" radius_px={12} imageUrl={groupProfileImageUrl} />
-              <TextBox>
-                <div className="place-name">{groupName}</div>
-                <div className="numbers">
-                  멤버 {memberCnt} <VerticalBar /> 맛집 {restaurantCnt}
-                </div>
-                <div className="intro">{groupIntroduce}</div>
-              </TextBox>
-            </MyGroup>
-          );
-        })}
-      </MyGroupWrapper>
+      {groupList ? (
+        <MyGroupWrapper>
+          {groupList.map((groupId) => {
+            const group = myGroupsData?.find((group) => group.groupId === groupId);
+            if (!group) {
+              return null;
+            }
+            const { groupName, groupProfileImageUrl, memberCnt, restaurantCnt, groupIntroduce } = group;
+            return (
+              <MyGroup key={groupId} onClick={() => push('GroupDetail', { groupId: groupId })}>
+                <ImageBox width="80px" height="80px" radius_px={12} imageUrl={groupProfileImageUrl} />
+                <TextBox>
+                  <div className="place-name">{groupName}</div>
+                  <div className="numbers">
+                    멤버 {memberCnt} <VerticalBar /> 맛집 {restaurantCnt}
+                  </div>
+                  <div className="intro">{groupIntroduce}</div>
+                </TextBox>
+              </MyGroup>
+            );
+          })}
+        </MyGroupWrapper>
+      ) : (
+        <></>
+      )}
     </AppScreen>
   );
 };

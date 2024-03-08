@@ -40,7 +40,11 @@ const GroupDetail = (): ReactNode => {
   const [sortState] = useAtom(sortByState);
   const handleOpenBottomSheet = useSetAtom(openBottomSheet);
 
-  const { Group, isError } = useGetGroup(9);
+  const path = window.location.pathname;
+  const split = path.split('/');
+  const value = split[2];
+
+  const { Group, isError } = useGetGroup(Number(value));
   console.log(Group);
 
   if (isError) {
