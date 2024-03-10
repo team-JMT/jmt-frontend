@@ -129,7 +129,9 @@
     "import/no-named-as-default": "off",
     "import/no-named-as-default-member": "off",
     "no-nested-ternary": "off",
-    "no-console": "error", // console 사용시 에러
+    "no-console": ["error", {
+      "allow": ["error", "info"]
+    }],
     "no-undef": "off",
     "no-async-promise-executor": "warn", //promise 내부에 async 함수에 대한 경고
     "no-extra-boolean-cast": "off", // 하단과 중복으로 옵션 off

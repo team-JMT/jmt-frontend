@@ -1,9 +1,26 @@
 export type BridgeRequest<T> = {
   name: string;
-  data: T;
-  onSuccess: string;
-  onFailed: string;
+  data?: T;
+  onSuccess?: string;
+  onFailed?: string;
 };
+
+export const handleTestSuccess = () => {
+  console.info('handleTestSuccess');
+};
+export const handleTestFail = () => {
+  console.info('handleTestFailed');
+};
+
+export const handleConsoleValue = (value: string) => {
+  console.info('handleConsoleValue', value);
+};
+
+if (window) {
+  window.handleTestSuccess = handleTestSuccess;
+  window.handleTestFail = handleTestFail;
+  window.handleConsoleValue = handleConsoleValue;
+}
 
 class BridgeApi {
   sendData<T>(data: BridgeRequest<T>) {
@@ -15,41 +32,27 @@ class BridgeApi {
     }
   }
   back(enable = true) {
-    if (window.webkit) {
-      // ios
-      console.log('backEnable', enable);
-      window.webkit.messageHandlers.webviewBridge.postMessage(
-        JSON.stringify({
-          event: 'back',
-          isEnableBack: enable,
-        }),
-      );
-    } else {
-      // android
-      console.log('backEnable', enable);
-      window?.webviewBridge?.back(
-        JSON.stringify({
-          isEnableBack: enable,
-        }),
-      );
-    }
+    this.sendData<{
+      enable: boolean;
+    }>({
+      name: 'back',
+      data: { enable: enable },
+    });
   }
-  navigation(enable = true) {
-    if (window.webkit) {
-      window.webkit.messageHandlers.webviewBridge.postMessage(
-        JSON.stringify({
-          event: 'navigation',
-          isVisible: enable,
-        }),
-      );
-    } else {
-      window?.webviewBridge?.navigation(
-        JSON.stringify({
-          isVisible: enable,
-        }),
-      );
-    }
+  navigation(isVisible = true) {
+    this.sendData<{
+      isVisible: boolean;
+    }>({
+      name: 'navigation',
+      data: { isVisible: isVisible },
+    });
+  }
+  token() {
+    this.sendData({
+      name: 'token',
+      onSuccess: 'handleConsoleValue',
+    });
   }
 }
 
-export default BridgeApi;
+export default new BridgeApi();

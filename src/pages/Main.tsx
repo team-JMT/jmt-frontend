@@ -7,6 +7,7 @@ import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { useMainFlow } from '@stacks/StackFlow';
 import { MainContainer, MyGroupList, MyGroupListContainer, MyGroupListHeader } from '@styles/pages/Main.tsx';
 import { textStyles } from '@styles/theme/typographies.ts';
+import BridgeApi from '@utils/Bridge.ts';
 
 import { useGetMyGroups } from '../apis/Group/queries/useGetMyGroups.ts';
 
@@ -35,6 +36,11 @@ const Main = (): ReactNode => {
         </MyGroupListContainer>
         <button onClick={() => push('GroupDetail', { groupId: 1 })}>그룹 상세</button>
         <button onClick={() => push('GroupList', {})}>그룹 리스트</button>
+        <button onClick={() => BridgeApi.back(false)}>뒤로가기 막기</button>
+        <button onClick={() => BridgeApi.back(true)}>뒤로가기 허용</button>
+        <button onClick={() => BridgeApi.navigation(true)}>nav 노출</button>
+        <button onClick={() => BridgeApi.navigation(false)}>nav 비노출</button>
+        <button onClick={() => BridgeApi.token()}>토큰 가져오기</button>
       </MainContainer>
     </AppScreen>
   );
