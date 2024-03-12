@@ -1,3 +1,4 @@
+import { nativeInfo } from './storage';
 export type BridgeRequest<T> = {
   name: string;
   data?: T;
@@ -14,6 +15,11 @@ export const handleTestFail = () => {
 
 export const handleConsoleValue = (value: string) => {
   console.info('handleConsoleValue', value);
+  const prevState = nativeInfo.getData();
+  nativeInfo.setData({
+    ...prevState,
+    accessToken: value,
+  });
 };
 
 if (window) {
