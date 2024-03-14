@@ -7,10 +7,11 @@ export const ColorBox = styled.div`
   bottom: 48px;
 `;
 
-export const Main400 = styled.div`
-  background-color: ${colors.main400};
+export const Main400 = styled.img<{ background?: string | null }>`
+  background-color: ${(props) => (props.background ? `url(${props.background})` : colors.main400)};
   width: 100%;
   height: 196px;
+  background-size: cover;
 `;
 export const Gradation = styled.div`
   position: absolute;
@@ -68,5 +69,17 @@ export const Title = styled.div`
   margin-top: 12px;
   div {
     ${textStyles.title_M_Bold}
+  }
+`;
+
+export const BlankBox = styled.div`
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  div {
+    ${textStyles.text_L_Medium}
   }
 `;

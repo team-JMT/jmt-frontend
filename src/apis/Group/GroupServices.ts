@@ -5,6 +5,7 @@ import { Instance } from '../Instance.ts';
 import { GetGroupResponse } from './data/GetGroup.ts';
 import { GetMyGroupsResponse } from './data/getMyGroups.ts';
 import { PostGroupRequest, PostGroupResponse } from './data/PostGroup.ts';
+import { PostRestaurantSearch, RestaurantRequest } from './data/restaurant.ts';
 
 export const postGroup = (payload: PostGroupRequest) => {
   const formData = changeToFormData(payload);
@@ -21,3 +22,6 @@ export const getMyGroups = () => {
 export const getGroup = (groupId: number) => {
   return Instance.get<GetGroupResponse>(`/api/v1/group/${groupId}`);
 };
+
+export const searchRestaurant = async (page: number, body: RestaurantRequest) =>
+  await Instance.post<PostRestaurantSearch>(`/api/v1/restaurant/search/map?page=${page}&size=20`, body);

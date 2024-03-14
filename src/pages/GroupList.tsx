@@ -19,11 +19,7 @@ const GroupList = (): ReactNode => {
     const localList = localStorage.getItem('group-list');
     if (localList !== null) {
       //로컬 순서가 설정된 것이 있는 경우
-      //setGroupList(JSON.parse(localList));
-      const groupIdArray = myGroupsData?.map((group) => group.groupId);
-      const json = JSON.stringify(groupIdArray);
-      localStorage.setItem('group-list', json);
-      setGroupList(groupIdArray!);
+      setGroupList(JSON.parse(localList));
     } else {
       const groupIdArray = myGroupsData?.map((group) => group.groupId);
       const json = JSON.stringify(groupIdArray);
