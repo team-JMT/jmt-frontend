@@ -38,6 +38,7 @@ const ReportModal = (): ReactNode => {
             <ModalButton
               onClick={() => {
                 pop();
+                pop();
                 // eslint-disable-next-line react-hooks/rules-of-hooks
                 useCloseModal(MODAL_KEY.REPORT_CHECK);
               }}

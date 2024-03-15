@@ -32,11 +32,11 @@ export const Item = ({ groupId, group }: Props) => {
 
   return (
     <DragItem value={groupId} drag="y" style={{ boxShadow, y }}>
-      <ImageBox width={'56px'} height={'56px'} radius_px={12} />
+      <ImageBox width={'56px'} height={'56px'} radius_px={12} imageUrl={group.groupProfileImageUrl} />
       <TextBox>
         <div className="place-name">{group.groupName}</div>
         <div className="numbers">
-          멤버 111 <VerticalBar /> 맛집 11
+          멤버 {group.memberCnt} <VerticalBar /> 맛집 {group.restaurantCnt}
         </div>
       </TextBox>
       <ListIcon />
