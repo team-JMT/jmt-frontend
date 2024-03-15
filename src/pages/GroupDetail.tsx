@@ -24,8 +24,10 @@ import {
   Numbers,
   Title,
   TitleSBold,
+  BottomBox,
 } from '@styles/pages/GroupDetail';
 
+import { postJoinGroup } from '../apis/Group/GroupServices';
 import useGetGroup from '../apis/Group/useGetGroup';
 import BackIcon from '../assets/BackIcon';
 import PostedPlace from '../layouts/GroupDetail/PostedPlace';
@@ -41,8 +43,23 @@ const GroupDetail = (): ReactNode => {
   const path = window.location.pathname;
   const split = path.split('/');
   const value = split[2];
+  const groupId = Number(value);
 
-  const { Group, isError } = useGetGroup(Number(value));
+  const { Group, isError } = useGetGroup(groupId);
+  const useJoinbtn = async () => {
+    try {
+      const res = await postJoinGroup(groupId);
+      console.log(res.data.message);
+
+      const localList = localStorage.getItem('group-list');
+      const groupIdArray = JSON.parse(localList!);
+      groupIdArray.push(groupId);
+      const json = JSON.stringify(groupIdArray);
+      localStorage.setItem('group-list', json);
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
 
   if (isError) {
     return <>에러가 났어요</>;
@@ -99,8 +116,11 @@ const GroupDetail = (): ReactNode => {
               주류 여부
             </FilterChip>
           </FilterArea>
-          <PostedPlace groupId={Number(value)} />
+          <PostedPlace groupId={groupId} />
         </MainContainer>
+        <BottomBox>
+          <button onClick={useJoinbtn}>그룹 참여하기</button>
+        </BottomBox>
         <InitGroupInviteModal />
       </AppScreen>
     );

@@ -24,6 +24,7 @@ export const MainContainer = styled.div`
   margin: 0 20px;
   position: relative;
   bottom: 108px;
+  height: calc(100vh - 90px);
 `;
 export const Numbers = styled.div`
   display: flex;
@@ -69,6 +70,24 @@ export const Title = styled.div`
   margin-top: 12px;
   div {
     ${textStyles.title_M_Bold}
+  }
+`;
+export const BottomBox = styled.div`
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  height: 80px;
+  background-color: #fff;
+  padding-top: 10px;
+  button {
+    border-radius: 8px;
+    border: none;
+    width: calc(100vw - 40px);
+    margin: 0 20px;
+    color: #fff;
+    background-color: ${colors.main500};
+    ${textStyles.text_L_Bold}
+    padding: 16px 10px;
   }
 `;
 

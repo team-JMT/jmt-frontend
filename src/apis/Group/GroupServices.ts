@@ -2,6 +2,7 @@ import { changeToFormData } from '@utils/changeToFormData.ts';
 
 import { Instance } from '../Instance.ts';
 
+import { ApiResponse } from './ApiResponse.ts';
 import { GetGroupResponse } from './data/GetGroup.ts';
 import { GetMyGroupsResponse } from './data/getMyGroups.ts';
 import { PostGroupRequest, PostGroupResponse } from './data/PostGroup.ts';
@@ -25,3 +26,7 @@ export const getGroup = (groupId: number) => {
 
 export const searchRestaurant = async (page: number, body: RestaurantRequest) =>
   await Instance.post<PostRestaurantSearch>(`/api/v1/restaurant/search/map?page=${page}&size=20`, body);
+
+export const postJoinGroup = async (groupId: number) => {
+  return await Instance.post<ApiResponse<object>>(`/api/v1/group/${groupId}/user`);
+};
