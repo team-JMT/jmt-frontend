@@ -7,9 +7,15 @@ import { Title, Explain, ButtonWrapper, ModalButton } from '@components/common/M
 import { useMainFlow } from '@stacks/StackFlow';
 import { MODAL_KEY, closeModal } from '@store/modalAtom';
 
+import { deleteGroup } from '../../apis/Group/GroupServices';
+
 const LeaveModal = (): ReactNode => {
   const useCloseModal = useSetAtom(closeModal);
   const { pop } = useMainFlow();
+
+  const path = window.location.pathname;
+  const value = path.split('/')[2];
+  const groupId = Number(value);
 
   return (
     <ModalComponent
@@ -32,6 +38,14 @@ const LeaveModal = (): ReactNode => {
             </ModalButton>
             <ModalButton
               onClick={() => {
+                const res = deleteGroup(groupId);
+                console.info(res);
+
+                const localList = localStorage.getItem('group-list');
+                const groupIdArray = JSON.parse(localList!);
+                const filteredArray = groupIdArray.filter((number: number) => number !== groupId);
+                const json = JSON.stringify(filteredArray);
+                localStorage.setItem('group-list', json);
                 pop();
                 // eslint-disable-next-line react-hooks/rules-of-hooks
                 useCloseModal(MODAL_KEY.LEAVE_CHECK);

@@ -30,3 +30,7 @@ export const searchRestaurant = async (page: number, body: RestaurantRequest) =>
 export const postJoinGroup = async (groupId: number) => {
   return await Instance.post<ApiResponse<object>>(`/api/v1/group/${groupId}/user`);
 };
+
+export const deleteGroup = async (groupId: number) => {
+  return await Instance.delete<ApiResponse<object>>(`/api/v1/group/${groupId}`);
+};

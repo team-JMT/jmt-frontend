@@ -46,18 +46,20 @@ const GroupDetail = (): ReactNode => {
   const groupId = Number(value);
 
   const { Group, isError } = useGetGroup(groupId);
+
+  const localList = localStorage.getItem('group-list');
+  const groupIdArray = JSON.parse(localList!);
+
   const useJoinbtn = async () => {
     try {
       const res = await postJoinGroup(groupId);
-      console.log(res.data.message);
+      console.info(res.data.message);
 
-      const localList = localStorage.getItem('group-list');
-      const groupIdArray = JSON.parse(localList!);
       groupIdArray.push(groupId);
       const json = JSON.stringify(groupIdArray);
       localStorage.setItem('group-list', json);
     } catch (error) {
-      console.log('error', error);
+      console.info('error', error);
     }
   };
 
@@ -79,7 +81,7 @@ const GroupDetail = (): ReactNode => {
           //https://github.com/daangn/stackflow/blob/main/demo/src/activities/Main.tsx
           height: '48px',
           renderRight: () => (
-            <div onClick={() => push('GroupSetting', {})}>
+            <div onClick={() => push('GroupSetting', { groupId: Group?.groupId })}>
               <MoreIcon />
             </div>
           ),
@@ -118,9 +120,15 @@ const GroupDetail = (): ReactNode => {
           </FilterArea>
           <PostedPlace groupId={groupId} />
         </MainContainer>
-        <BottomBox>
-          <button onClick={useJoinbtn}>그룹 참여하기</button>
-        </BottomBox>
+        {groupIdArray.includes(groupId) ? (
+          <></>
+        ) : (
+          //이 그룹에 참가하지 않았을 때만 참여하기 버튼 나타냄
+          <BottomBox>
+            <button onClick={useJoinbtn}>그룹 참여하기</button>
+          </BottomBox>
+        )}
+
         <InitGroupInviteModal />
       </AppScreen>
     );
