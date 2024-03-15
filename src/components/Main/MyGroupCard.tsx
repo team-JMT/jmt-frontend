@@ -6,6 +6,7 @@ import { textStyles } from '@styles/theme/typographies.ts';
 const Image = styled.img`
   width: 110px;
   height: 110px;
+  border-radius: 16px;
   object-fit: cover;
 `;
 const Container = styled.div`

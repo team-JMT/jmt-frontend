@@ -59,6 +59,14 @@ class BridgeApi {
       data: { isVisible: isVisible },
     });
   }
+  navigate(route: string) {
+    this.sendData<{
+      route: string;
+    }>({
+      name: 'navigate',
+      data: { route },
+    });
+  }
   token() {
     this.sendData({
       name: 'token',
