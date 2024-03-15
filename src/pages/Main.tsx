@@ -37,7 +37,16 @@ const Main = (): ReactNode => {
           </MyGroupListHeader>
           <MyGroupList>
             {myGroupsData?.map(({ groupId, groupName, groupProfileImageUrl }) => (
-              <MyGroupCard key={groupId} image={groupProfileImageUrl} name={groupName} />
+              <MyGroupCard
+                key={groupId}
+                image={groupProfileImageUrl}
+                name={groupName}
+                onClick={() =>
+                  push('GroupDetail', {
+                    groupId,
+                  })
+                }
+              />
             ))}
           </MyGroupList>
         </MyGroupListContainer>
