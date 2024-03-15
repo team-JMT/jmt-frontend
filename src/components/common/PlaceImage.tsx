@@ -16,9 +16,9 @@ const Img = styled.div<{ background: string }>`
   width: 100%;
   height: 200px;
   border-radius: 16px;
-  background: ${(props) => props.background};
+  background: ${(props) => (props.background ? `url(${props.background})` : colors.gray200)};
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 `;
 const ImageTag = styled.div`
@@ -37,7 +37,7 @@ const PlaceImage = ({ category, canDrinkLiquor, imageUrl }: PlaceImageProps): Re
   return (
     <Img background={img}>
       <ImageTag>{category}</ImageTag>
-      <ImageTag>{canDrinkLiquor}</ImageTag>
+      <ImageTag>{canDrinkLiquor ? '주류가능' : '주류불가능'}</ImageTag>
     </Img>
   );
 };

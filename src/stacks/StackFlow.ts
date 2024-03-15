@@ -28,7 +28,7 @@ export const { Stack: MainStack, useFlow: useMainFlow } = stackflow({
         IntroduceGroup: '/group-create/introduce',
         GroupDetail: '/group-detail/:groupId',
         GroupShare: '/group-share/:groupId',
-        GroupSetting: '/group-setting',
+        GroupSetting: '/group-setting/:groupId',
         GroupList: '/group-list',
         GroupListEdit: '/gruop-list-edit',
         NotFound: '/error',

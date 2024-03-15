@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 import { Reorder } from 'framer-motion';
 
@@ -53,9 +53,9 @@ const GroupListEdit = (): ReactNode => {
   const [groupOrder, setGroupOrder] = useState<number[]>(JSON.parse(localList!));
 
   const handleChange = () => {
-    console.log(groupOrder);
     const json = JSON.stringify(groupOrder);
     localStorage.setItem('group-list', json);
+    pop();
   };
 
   return (
