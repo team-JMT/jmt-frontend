@@ -1,4 +1,4 @@
-import { ReactNode, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 
 import RightArrowIconButton from '@components/common/RightArrowIcon.tsx';
 import CreateGroupButton from '@components/Main/CreateGroupButton.tsx';
@@ -17,6 +17,10 @@ const Main = (): ReactNode => {
   const { myGroupsData } = useGetMyGroups();
 
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    BridgeApi.navigation(true);
+  }, []);
 
   return (
     <AppScreen

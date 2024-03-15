@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 import { useSetAtom } from 'jotai';
 
@@ -11,6 +11,7 @@ import { handleSetNameAtom } from '@store/createGroupAtom.ts';
 import { BackBox } from '@styles/global.tsx';
 import { Container, Input, Title } from '@styles/pages/CreateGroup.styled.ts';
 import { textStyles } from '@styles/theme/typographies.ts';
+import BridgeApi from '@utils/Bridge.ts';
 
 const GroupName = (): ReactNode => {
   const { pop, replace } = useMainFlow();
@@ -21,6 +22,9 @@ const GroupName = (): ReactNode => {
     handleSetName(inputValue);
     replace('IntroduceGroup', {});
   };
+  useEffect(() => {
+    BridgeApi.navigation(false);
+  }, []);
   return (
     <AppScreen
       appBar={{

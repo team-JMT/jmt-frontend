@@ -13,6 +13,7 @@ import { createGroupAtom } from '@store/createGroupAtom.ts';
 import { BackBox } from '@styles/global.tsx';
 import { Container, Title } from '@styles/pages/CreateGroup.styled.ts';
 import { textStyles } from '@styles/theme/typographies.ts';
+import BridgeApi from '@utils/Bridge.ts';
 
 import { usePostGroupMutate } from '../../apis/Group/queries/usePostGroupMutate.ts';
 import useFileInput from '../../hooks/useFileInput.ts';
@@ -101,6 +102,10 @@ const GroupImage = () => {
       resetBackgroundPhoto();
     }
   }, [backgroundPhoto, profilePhoto, resetBackgroundPhoto, resetProfilePhoto]);
+
+  useEffect(() => {
+    BridgeApi.navigation(false);
+  }, []);
 
   return (
     <AppScreen

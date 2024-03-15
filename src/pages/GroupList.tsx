@@ -7,6 +7,7 @@ import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { useMainFlow } from '@stacks/StackFlow';
 import { BackBox } from '@styles/global';
 import { Title, MyGroup, TextBox, MyGroupWrapper } from '@styles/pages/GroupList';
+import BridgeApi from '@utils/Bridge.ts';
 
 import { useGetMyGroups } from '../apis/Group/queries/useGetMyGroups.ts';
 
@@ -31,6 +32,10 @@ const GroupList = (): ReactNode => {
       setGroupList(groupIdArray!);
     }
   }, [myGroupsData]);
+
+  useEffect(() => {
+    BridgeApi.navigation(false);
+  }, []);
 
   return (
     <AppScreen

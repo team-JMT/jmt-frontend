@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useSetAtom } from 'jotai/index';
 
@@ -11,6 +11,7 @@ import { handleSetDescriptionAtom } from '@store/createGroupAtom.ts';
 import { BackBox } from '@styles/global.tsx';
 import { Container, TextArea, Title } from '@styles/pages/CreateGroup.styled.ts';
 import { textStyles } from '@styles/theme/typographies.ts';
+import BridgeApi from '@utils/Bridge.ts';
 
 const IntroduceGroup = () => {
   const { pop, replace } = useMainFlow();
@@ -21,6 +22,9 @@ const IntroduceGroup = () => {
     handleSetDescription(inputValue);
     replace('GroupImage', {});
   };
+  useEffect(() => {
+    BridgeApi.navigation(false);
+  }, []);
   return (
     <AppScreen
       appBar={{
