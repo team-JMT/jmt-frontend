@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useRef } from 'react';
 
 import RightArrowIconButton from '@components/common/RightArrowIcon.tsx';
 import CreateGroupButton from '@components/Main/CreateGroupButton.tsx';
@@ -7,13 +7,16 @@ import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { useMainFlow } from '@stacks/StackFlow';
 import { MainContainer, MyGroupList, MyGroupListContainer, MyGroupListHeader } from '@styles/pages/Main.tsx';
 import { textStyles } from '@styles/theme/typographies.ts';
-import BridgeApi from '@utils/Bridge.ts';
+import BridgeApi, { setAccessToken } from '@utils/Bridge.ts';
+import { nativeInfo } from '@utils/storage.ts';
 
 import { useGetMyGroups } from '../apis/Group/queries/useGetMyGroups.ts';
 
 const Main = (): ReactNode => {
   const { push } = useMainFlow();
   const { myGroupsData } = useGetMyGroups();
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <AppScreen
@@ -41,6 +44,9 @@ const Main = (): ReactNode => {
         <button onClick={() => BridgeApi.navigation(true)}>nav 노출</button>
         <button onClick={() => BridgeApi.navigation(false)}>nav 비노출</button>
         <button onClick={() => BridgeApi.token()}>토큰 가져오기</button>
+        <input ref={inputRef} />
+        <button onClick={() => setAccessToken(inputRef.current?.value ?? '')}>토큰 세팅</button>
+        <button onClick={() => console.info(nativeInfo.getData())}>토큰 체크</button>
       </MainContainer>
     </AppScreen>
   );

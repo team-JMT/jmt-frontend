@@ -15,17 +15,23 @@ export const handleTestFail = () => {
 
 export const handleConsoleValue = (value: string) => {
   console.info('handleConsoleValue', value);
+};
+
+export const setAccessToken = (token: string) => {
   const prevState = nativeInfo.getData();
   nativeInfo.setData({
     ...prevState,
-    accessToken: value,
+    accessToken: token,
   });
 };
 
 if (window) {
+  // ### 테스트용 브릿지입니다.
   window.handleTestSuccess = handleTestSuccess;
   window.handleTestFail = handleTestFail;
   window.handleConsoleValue = handleConsoleValue;
+  // ### 아래부터는 PROD 브릿지입니다.
+  window.setAccessToken = setAccessToken;
 }
 
 class BridgeApi {
@@ -56,7 +62,7 @@ class BridgeApi {
   token() {
     this.sendData({
       name: 'token',
-      onSuccess: 'handleConsoleValue',
+      onSuccess: 'setAccessToken',
     });
   }
 }
