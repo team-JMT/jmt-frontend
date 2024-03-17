@@ -44,14 +44,14 @@ const GroupSetting = (): ReactNode => {
           >
             이 그룹 나가기 <RightIcon />
           </div>
-          <div
+          {/* <div
             onClick={() => {
               // eslint-disable-next-line react-hooks/rules-of-hooks
               useToggleModal(MODAL_KEY.DELETE_CHECK);
             }}
           >
             이 그룹 삭제하기 <RightIcon />
-          </div>
+          </div> */}
           <Red
             onClick={() => {
               // eslint-disable-next-line react-hooks/rules-of-hooks

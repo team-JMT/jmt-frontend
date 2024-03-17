@@ -5,6 +5,7 @@ import { Instance } from '../Instance.ts';
 import { ApiResponse } from './ApiResponse.ts';
 import { GetGroupResponse } from './data/GetGroup.ts';
 import { GetMyGroupsResponse } from './data/getMyGroups.ts';
+import { GetRestaurantReview } from './data/GetReview.ts';
 import { PostGroupRequest, PostGroupResponse } from './data/PostGroup.ts';
 import { PostRestaurantSearch, RestaurantRequest } from './data/restaurant.ts';
 
@@ -26,6 +27,9 @@ export const getGroup = (groupId: number) => {
 
 export const searchRestaurant = async (page: number, body: RestaurantRequest) =>
   await Instance.post<PostRestaurantSearch>(`/api/v1/restaurant/search/map?page=${page}&size=20`, body);
+
+export const getRestaurantReview = async (placeId: number) =>
+  await Instance.get<GetRestaurantReview>(`/api/v1/restaurant/${placeId}/review`);
 
 export const postJoinGroup = async (groupId: number) => {
   return await Instance.post<ApiResponse<object>>(`/api/v1/group/${groupId}/user`);

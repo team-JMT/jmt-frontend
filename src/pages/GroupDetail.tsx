@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 
 import { useAtom, useSetAtom } from 'jotai';
 
@@ -11,7 +11,7 @@ import InitGroupInviteModal from '@components/GroupDetail/InitGroupInviteModal.t
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { useMainFlow } from '@stacks/StackFlow';
 import { openBottomSheet } from '@store/bottomSheetAtom';
-import { drinkCategoryState, foodCategoryState } from '@store/filterAtom';
+import { drinkCategoryState, foodCategoryState, FoodKey } from '@store/filterAtom';
 import { BackBox } from '@styles/global';
 import {
   ColorBox,
@@ -25,7 +25,9 @@ import {
   Title,
   TitleSBold,
   BottomBox,
+  TopBox,
 } from '@styles/pages/GroupDetail';
+import BridgeApi from '@utils/Bridge.ts';
 
 import { postJoinGroup } from '../apis/Group/GroupServices';
 import useGetGroup from '../apis/Group/useGetGroup';
@@ -49,6 +51,10 @@ const GroupDetail = (): ReactNode => {
 
   const localList = localStorage.getItem('group-list');
   const groupIdArray = JSON.parse(localList!);
+
+  useEffect(() => {
+    BridgeApi.navigation(false);
+  }, []);
 
   const useJoinbtn = async () => {
     try {
@@ -90,36 +96,38 @@ const GroupDetail = (): ReactNode => {
         <ColorBox>
           <Main400 src={Group?.groupBackgroundImageUrl} /> <Gradation />
         </ColorBox>
-        <MainContainer>
-          <ImageBox width={'80px'} height={'80px'} radius_px={16} imageUrl={Group?.groupProfileImageUrl} />
-          <Title>
-            <div>{Group?.groupName}</div>
-            <div onClick={() => push('GroupShare', { groupId: Group?.groupId })}>
-              <ShareIcon />
-            </div>
-          </Title>
-          <Numbers>
-            멤버 {Group?.memberCnt}
-            <VerticalBar /> 맛집 {Group?.restaurantCnt}
-          </Numbers>
-          <Introduction>{Group?.groupIntroduce}</Introduction>
-          <GrayBar />
-          <TitleSBold>최근 등록된 맛집</TitleSBold>
-          <FilterArea>
-            {/* <Chip onClick={() => handleOpenBottomSheet('SORT_BY')}>
+        <TopBox>
+          <MainContainer>
+            <ImageBox width={'80px'} height={'80px'} radius_px={16} imageUrl={Group?.groupProfileImageUrl} />
+            <Title>
+              <div>{Group?.groupName}</div>
+              <div onClick={() => push('GroupShare', { groupId: Group?.groupId })}>
+                <ShareIcon />
+              </div>
+            </Title>
+            <Numbers>
+              멤버 {Group?.memberCnt}
+              <VerticalBar /> 맛집 {Group?.restaurantCnt}
+            </Numbers>
+            <Introduction>{Group?.groupIntroduce}</Introduction>
+            <GrayBar />
+            <TitleSBold>최근 등록된 맛집</TitleSBold>
+            <FilterArea>
+              {/* <Chip onClick={() => handleOpenBottomSheet('SORT_BY')}>
               {SortKey[sortState]}
               <DownArrow />
             </Chip>
             <Divider /> */}
-            <FilterChip active={foodState !== ''} onClick={() => handleOpenBottomSheet('FOOD_CATEGORY')}>
-              종류
-            </FilterChip>
-            <FilterChip active={drinkState !== ''} onClick={() => handleOpenBottomSheet('DRINK_CATEGORY')}>
-              주류 여부
-            </FilterChip>
-          </FilterArea>
-          <PostedPlace groupId={groupId} />
-        </MainContainer>
+              <FilterChip active={foodState !== ''} onClick={() => handleOpenBottomSheet('FOOD_CATEGORY')}>
+                {foodState === '' ? '종류' : FoodKey[foodState]}
+              </FilterChip>
+              <FilterChip active={drinkState !== ''} onClick={() => handleOpenBottomSheet('DRINK_CATEGORY')}>
+                주류 여부
+              </FilterChip>
+            </FilterArea>
+            <PostedPlace groupId={groupId} />
+          </MainContainer>
+        </TopBox>
         {groupIdArray.includes(groupId) ? (
           <></>
         ) : (
@@ -128,7 +136,6 @@ const GroupDetail = (): ReactNode => {
             <button onClick={useJoinbtn}>그룹 참여하기</button>
           </BottomBox>
         )}
-
         <InitGroupInviteModal />
       </AppScreen>
     );

@@ -9,7 +9,11 @@ import { colors } from '@styles/theme/color';
 import { textStyles } from '@styles/theme/typographies';
 
 import { Restaurant } from '../../apis/Group/data/restaurant';
+import { useGetReview } from '../../apis/Group/queries/useGetReview';
 
+const Wrapper = styled.div`
+  margin-bottom: 30px;
+`;
 const UserInfo = styled.div`
   display: flex;
   align-items: center;
@@ -29,6 +33,7 @@ const Introduction = styled.div`
   margin-top: 8px;
   ${textStyles.text_M_Medium}
   color:${colors.gray600};
+  margin-bottom: 16px;
 `;
 const ReactionBox = styled.div`
   display: flex;
@@ -36,7 +41,6 @@ const ReactionBox = styled.div`
   gap: 4px;
   ${textStyles.text_S_Medium}
   height:24px;
-  margin: 16px 0;
 `;
 const ReviewBox = styled.div`
   display: flex;
@@ -44,7 +48,7 @@ const ReviewBox = styled.div`
   border-radius: 16px;
   background: ${colors.gray100};
   padding: 20px 16px;
-  margin-bottom: 30px;
+  margin-top: 16px;
 `;
 const TextBox = styled.div`
   display: flex;
@@ -68,8 +72,9 @@ interface Props {
   data: Restaurant;
 }
 const PlaceCard = ({ data }: Props): ReactNode => {
+  const { lastReview, reviewCount } = useGetReview(data.id);
   return (
-    <div>
+    <Wrapper>
       <UserInfo>
         <ImageBox width={'24px'} height={'24px'} radius_px={12} imageUrl={data.userProfileImageUrl} />
         <div>{data.userNickName}</div>
@@ -78,17 +83,21 @@ const PlaceCard = ({ data }: Props): ReactNode => {
       <PlaceName>{data.name}</PlaceName>
       <Introduction>{data.introduce}</Introduction>
       <ReactionBox>
-        <HeartIcon />
-        123 <MessageIcon /> 456
+        {/* <HeartIcon /> 123  */}
+        <MessageIcon /> {reviewCount}
       </ReactionBox>
-      <ReviewBox>
-        <ImageBox width={'40px'} height={'40px'} radius_px={8} />
-        <TextBox>
-          <div className="user-name">유저 이름</div>
-          <div className="comment">유저가 남긴 코메에에에에에에에에에에에에에ㅔ에에에엥에에에엔트</div>
-        </TextBox>
-      </ReviewBox>
-    </div>
+      {lastReview ? (
+        <ReviewBox>
+          <ImageBox width={'40px'} height={'40px'} radius_px={8} imageUrl={lastReview?.reviewImages[0]} />
+          <TextBox>
+            <div className="user-name">{lastReview?.userName}</div>
+            <div className="comment">{lastReview?.reviewContent}</div>
+          </TextBox>
+        </ReviewBox>
+      ) : (
+        <></>
+      )}
+    </Wrapper>
   );
 };
 
