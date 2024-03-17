@@ -15,9 +15,10 @@ const GroupList = (): ReactNode => {
   const { pop, push } = useMainFlow();
   const { myGroupsData } = useGetMyGroups();
   const [groupList, setGroupList] = useState<number[]>([]);
+  const localList = localStorage.getItem('group-list');
 
   useEffect(() => {
-    const localList = localStorage.getItem('group-list');
+    BridgeApi.navigation(false);
     if (localList === 'undefined' || localList === null) {
       // 처음 접속하여 정보가 없을 경우 id 순서대로 정렬된 group id 배열을 local에 저장
       const groupIdArray = myGroupsData?.map((group) => group.groupId);
@@ -25,16 +26,12 @@ const GroupList = (): ReactNode => {
       const json = JSON.stringify(groupIdArray);
       localStorage.setItem('group-list', json);
     } else if (localList === '[]') {
-      console.log('포함된 그룹이 없어요');
+      console.info('포함된 그룹이 없어요');
     } else {
       //로컬 순서가 설정된 것이 있는 경우
       setGroupList(JSON.parse(localList));
     }
-  }, [myGroupsData]);
-
-  useEffect(() => {
-    BridgeApi.navigation(false);
-  }, []);
+  }, [myGroupsData, localList]);
 
   return (
     <AppScreen

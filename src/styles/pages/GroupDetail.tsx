@@ -2,6 +2,10 @@ import { styled } from '@linaria/react';
 import { colors } from '@styles/theme/color';
 import { textStyles } from '@styles/theme/typographies';
 
+export const TopBox = styled.div`
+  //height: calc(100vh - 128px);
+  // overflow-y: auto;
+`;
 export const ColorBox = styled.div`
   position: relative;
   bottom: 48px;
@@ -24,7 +28,6 @@ export const MainContainer = styled.div`
   margin: 0 20px;
   position: relative;
   bottom: 108px;
-  height: calc(100vh - 90px);
 `;
 export const Numbers = styled.div`
   display: flex;
@@ -76,6 +79,7 @@ export const BottomBox = styled.div`
   width: 100%;
   position: sticky;
   bottom: 0;
+  z-index: 100;
   height: 80px;
   background-color: #fff;
   padding-top: 10px;

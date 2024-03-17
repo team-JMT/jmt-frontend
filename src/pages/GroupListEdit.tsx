@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 import { Reorder } from 'framer-motion';
 
@@ -9,6 +9,7 @@ import { useMainFlow } from '@stacks/StackFlow';
 import { BackBox } from '@styles/global';
 import { colors } from '@styles/theme/color';
 import { textStyles } from '@styles/theme/typographies';
+import BridgeApi from '@utils/Bridge.ts';
 
 import { useGetMyGroups } from '../apis/Group/queries/useGetMyGroups';
 import { Item } from '../layouts/GroupList/Item';
@@ -43,6 +44,7 @@ const DragGroup = styled(Reorder.Group)`
   flex-direction: column;
   margin: 0 4px;
   padding: 0;
+  height: calc(100vh - 128px);
 `;
 const GroupListEdit = (): ReactNode => {
   const { pop } = useMainFlow();
@@ -52,10 +54,17 @@ const GroupListEdit = (): ReactNode => {
   const localList = localStorage.getItem('group-list');
   const [groupOrder, setGroupOrder] = useState<number[]>(JSON.parse(localList!));
 
+  useEffect(() => {
+    BridgeApi.navigation(false);
+  }, []);
+
   const handleChange = () => {
     const json = JSON.stringify(groupOrder);
     localStorage.setItem('group-list', json);
     pop();
+    setTimeout(() => {
+      window.location.reload();
+    }, 100); // 3초를 밀리초 단위로 설정합니다.
   };
 
   return (
