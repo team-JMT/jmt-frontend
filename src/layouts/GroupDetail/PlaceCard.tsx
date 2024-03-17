@@ -72,7 +72,7 @@ interface Props {
   data: Restaurant;
 }
 const PlaceCard = ({ data }: Props): ReactNode => {
-  const { lastReview } = useGetReview(data.id);
+  const { lastReview, reviewCount } = useGetReview(data.id);
   return (
     <Wrapper>
       <UserInfo>
@@ -82,10 +82,10 @@ const PlaceCard = ({ data }: Props): ReactNode => {
       <PlaceImage category={data.category} canDrinkLiquor={data.canDrinkLiquor} imageUrl={data.restaurantImageUrl} />
       <PlaceName>{data.name}</PlaceName>
       <Introduction>{data.introduce}</Introduction>
-      {/* <ReactionBox>
-        <HeartIcon />
-        123 <MessageIcon /> 456
-      </ReactionBox> */}
+      <ReactionBox>
+        {/* <HeartIcon /> 123  */}
+        <MessageIcon /> {reviewCount}
+      </ReactionBox>
       {lastReview ? (
         <ReviewBox>
           <ImageBox width={'40px'} height={'40px'} radius_px={8} imageUrl={lastReview?.reviewImages[0]} />

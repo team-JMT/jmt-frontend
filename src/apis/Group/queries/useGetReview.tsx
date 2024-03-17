@@ -9,10 +9,12 @@ export const useGetReview = (placeId: number) => {
   });
 
   const reviewList = data?.data?.data?.reviewList;
+  const reviewCount = reviewList ? reviewList.length - 1 : null;
   const lastReview = reviewList ? reviewList[reviewList.length - 1] : null;
 
   return {
     lastReview: lastReview,
+    reviewCount: reviewCount,
     ...rest,
   };
 };

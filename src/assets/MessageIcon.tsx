@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { styled } from '@linaria/react';
 
 const Container = styled.div`
-  margin: 6px 2px 0 14px;
+  margin: 6px 2px 0; //14px;
 `;
 const MessageIcon = (): ReactNode => {
   return (
