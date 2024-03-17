@@ -67,7 +67,7 @@ const PostedPlace = ({ groupId }: Props) => {
             <BlankBox>
               <BlankIcon />
               <div>아직 등록된 맛집이 없어요</div>
-              <button onClick={() => BridgeApi.navigate(groupId)}>맛집 등록하기</button>
+              <button onClick={() => BridgeApi.navigate('PlaceAdd', groupId)}>맛집 등록하기</button>
             </BlankBox>
           )}
         </>
