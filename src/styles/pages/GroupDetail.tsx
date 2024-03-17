@@ -105,7 +105,8 @@ export const BlankBox = styled.div`
     width: 140px;
     height: 48px;
     margin-top: 16px;
-
+    justify-content: center;
+    align-items: center;
     border-radius: 8px;
     background: ${colors.main500};
     border: none;
