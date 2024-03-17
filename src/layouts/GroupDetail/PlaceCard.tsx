@@ -44,6 +44,7 @@ const ReviewBox = styled.div`
   border-radius: 16px;
   background: ${colors.gray100};
   padding: 20px 16px;
+  margin-bottom: 30px;
 `;
 const TextBox = styled.div`
   display: flex;

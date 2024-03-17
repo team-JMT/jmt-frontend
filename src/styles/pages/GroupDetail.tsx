@@ -101,4 +101,16 @@ export const BlankBox = styled.div`
   div {
     ${textStyles.text_L_Medium}
   }
+  button {
+    width: 140px;
+    height: 48px;
+    margin-top: 16px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background: ${colors.main500};
+    border: none;
+    ${textStyles.text_M_Bold};
+    color: #fff;
+  }
 `;
