@@ -5,6 +5,7 @@ import BlankIcon from '@assets/BlankIcon';
 import { useMainFlow } from '@stacks/StackFlow';
 import { foodCategoryState, drinkCategoryState, drinkToBoolean } from '@store/filterAtom';
 import { BlankBox } from '@styles/pages/GroupDetail';
+import BridgeApi from '@utils/Bridge.ts';
 
 import { Restaurant } from '../../apis/Group/data/restaurant';
 import { usePostRestaurantSearch } from '../../apis/Group/queries/usePostRestaurantSearch';
@@ -56,7 +57,7 @@ const PostedPlace = ({ groupId }: Props) => {
     >
       <section className={'place-detail-section'}>
         <>
-          {restaurant ? (
+          {restaurant && restaurant.length !== 0 ? (
             <>
               {restaurant!.map((item: Restaurant) => (
                 <PlaceCard data={item} key={item.id} />
@@ -66,6 +67,7 @@ const PostedPlace = ({ groupId }: Props) => {
             <BlankBox>
               <BlankIcon />
               <div>아직 등록된 맛집이 없어요</div>
+              <button onClick={() => BridgeApi.navigate(groupId)}>맛집 등록하기</button>
             </BlankBox>
           )}
         </>
