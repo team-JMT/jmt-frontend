@@ -59,12 +59,21 @@ class BridgeApi {
       data: { isVisible: isVisible },
     });
   }
-  navigate(groupId: number) {
+  navigate(route: string, Id: number) {
+    this.sendData<{
+      route: string;
+      Id: number;
+    }>({
+      name: 'navigate',
+      data: { route: route, Id: Id },
+    });
+  }
+  requestResponse(groupId: number) {
     this.sendData<{
       groupId: number;
     }>({
-      name: 'navigate',
-      data: { groupId },
+      name: 'requestResponse',
+      data: { groupId: groupId },
     });
   }
   token() {

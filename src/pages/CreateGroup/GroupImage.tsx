@@ -65,9 +65,12 @@ const GroupImage = () => {
       },
       {
         onSuccess: async (response) => {
-          replace('GroupDetail', {
-            groupId: response.data.data.groupCode,
-          });
+          console.log(response.data);
+
+          // replace('GroupDetail', {
+          //   groupId: response.data.data.groupCode,
+          // });
+          BridgeApi.requestResponse(Number(response.data.data.groupCode));
           sessionStorage.setItem('group-init', 'true');
         },
       },

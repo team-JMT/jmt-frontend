@@ -1,12 +1,13 @@
 import { ReactNode } from 'react';
 
-import HeartIcon from '@assets/HeartIcon';
+//import HeartIcon from '@assets/HeartIcon';
 import MessageIcon from '@assets/MessageIcon';
 import ImageBox from '@components/common/ImageBox';
 import PlaceImage from '@components/common/PlaceImage';
 import { styled } from '@linaria/react';
 import { colors } from '@styles/theme/color';
 import { textStyles } from '@styles/theme/typographies';
+import BridgeApi from '@utils/Bridge.ts';
 
 import { Restaurant } from '../../apis/Group/data/restaurant';
 import { useGetReview } from '../../apis/Group/queries/useGetReview';
@@ -74,7 +75,7 @@ interface Props {
 const PlaceCard = ({ data }: Props): ReactNode => {
   const { lastReview, reviewCount } = useGetReview(data.id);
   return (
-    <Wrapper>
+    <Wrapper onClick={() => BridgeApi.navigate('registRestaurant', data.id)}>
       <UserInfo>
         <ImageBox width={'24px'} height={'24px'} radius_px={12} imageUrl={data.userProfileImageUrl} />
         <div>{data.userNickName}</div>
