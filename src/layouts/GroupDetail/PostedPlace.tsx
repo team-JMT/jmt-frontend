@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { useAtom } from 'jotai';
 
 import BlankIcon from '@assets/BlankIcon';
-import { useMainFlow } from '@stacks/StackFlow';
 import { foodCategoryState, drinkCategoryState, drinkToBoolean } from '@store/filterAtom';
 import { BlankBox } from '@styles/pages/GroupDetail';
 import BridgeApi from '@utils/Bridge.ts';
@@ -17,8 +16,6 @@ interface Props {
 }
 
 const PostedPlace = ({ groupId }: Props) => {
-  const { push } = useMainFlow();
-
   const [foodState] = useAtom(foodCategoryState);
   const [drinkState] = useAtom(drinkCategoryState);
   //const [sortState] = useAtom(sortByState);
@@ -67,7 +64,7 @@ const PostedPlace = ({ groupId }: Props) => {
             <BlankBox>
               <BlankIcon />
               <div>아직 등록된 맛집이 없어요</div>
-              <button onClick={() => BridgeApi.navigate('PlaceAdd', groupId)}>맛집 등록하기</button>
+              <button onClick={() => BridgeApi.navigate('registRestaurant', groupId)}>맛집 등록하기</button>
             </BlankBox>
           )}
         </>
