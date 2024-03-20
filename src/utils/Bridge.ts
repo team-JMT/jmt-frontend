@@ -65,7 +65,7 @@ class BridgeApi {
       Id: number;
     }>({
       name: 'navigate',
-      data: { route: route, Id: Id },
+      data: { route, Id },
     });
   }
   requestResponse(groupId: number) {
@@ -73,7 +73,7 @@ class BridgeApi {
       groupId: number;
     }>({
       name: 'requestResponse',
-      data: { groupId: groupId },
+      data: { groupId },
     });
   }
   token() {
