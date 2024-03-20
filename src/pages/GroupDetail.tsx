@@ -53,6 +53,7 @@ const GroupDetail = (): ReactNode => {
   const groupIdArray = JSON.parse(localList!);
 
   useEffect(() => {
+    BridgeApi.token()
     BridgeApi.navigation(false);
   }, []);
 
